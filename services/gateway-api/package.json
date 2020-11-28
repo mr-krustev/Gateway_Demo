@@ -2,7 +2,7 @@
   "name": "gateway-api",
   "version": "1.0.0",
   "description": "This is an example nodejs + angular project.",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,5 +15,15 @@
   "bugs": {
     "url": "https://github.com/mr-krustev/Gateway_Demo/issues"
   },
-  "homepage": "https://github.com/mr-krustev/Gateway_Demo#readme"
+  "homepage": "https://github.com/mr-krustev/Gateway_Demo#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "mongoose": "^5.10.17",
+    "passport": "^0.4.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
 }
