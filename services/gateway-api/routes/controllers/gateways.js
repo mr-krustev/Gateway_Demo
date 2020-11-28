@@ -17,9 +17,9 @@ router.get('/', async (req, res, next) => {
 });
 
 // In case its needed to view specific peripheral.
-// router.get('/:serialNumber/peripherals/:id', async (req, res, next) => {
+// router.get('/:gateId/peripherals/:id', async (req, res, next) => {
 //     try {
-//         const gateway = await Gateway.findOne({ serialNumber: req.params.serialNumber })
+//         const gateway = await Gateway.findOne({ _id: req.params.gateId })
 //             .populate('peripherals')
 //             .lean();
 
@@ -36,9 +36,9 @@ router.get('/', async (req, res, next) => {
 //     }
 // });
 
-router.get('/:serialNumber', async (req, res, next) => {
+router.get('/:gateId', async (req, res, next) => {
     try {
-        const result = await Gateway.findOne({ serialNumber: req.params.serialNumber })
+        const result = await Gateway.findOne({ _id: req.params.gateId })
             .populate('peripherals')
             .lean();
         res.status(200).send(result);
@@ -59,9 +59,9 @@ router.post('/', async (req, res, next) => {
 });
 
 
-router.post('/:serialNumber/peripherals', async (req, res, next) => {
+router.post('/:gateId/peripherals', async (req, res, next) => {
     try {
-        const gateway = await Gateway.findOne({ serialNumber: req.params.serialNumber });
+        const gateway = await Gateway.findOne({ _id: req.params.gateId });
         if (!gateway) {
             throw new Error('Gateway not found.')
         }
@@ -73,7 +73,7 @@ router.post('/:serialNumber/peripherals', async (req, res, next) => {
         // This could be improved but for the purpose of being a unique number, should suffice.
         req.body.UID = nanoid();
         req.body.dateCreated = Date.now();
-        req.body.gateway = req.params.serialNumber;
+        req.body.gateway = req.params.gateId;
         const result = await Peripheral.create(req.body);
         gateway.peripherals.push(result);
         gateway.save();
@@ -85,9 +85,9 @@ router.post('/:serialNumber/peripherals', async (req, res, next) => {
     }
 });
 
-router.delete('/:serialNumber/peripherals/:id', async (req, res, next) => {
+router.delete('/:gateId/peripherals/:id', async (req, res, next) => {
     try {
-        const gateway = await (await Gateway.findOne({ serialNumber: req.params.serialNumber }));
+        const gateway = await (await Gateway.findOne({ _id: req.params.gateId }));
         if (!gateway) {
             throw new Error('Gateway not found.')
         }
