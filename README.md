@@ -19,7 +19,7 @@ Returns a list of all gateways with their respective peripheral devices.
 ##### `POST localhost:3000/api/gateways`
 
 ###### Payload
-```
+```json
 {
 	"serialNumber": "CV213SDAE123",
 	"name": "Home Router",
@@ -32,7 +32,7 @@ Returns a list of all gateways with their respective peripheral devices.
 - **gateId**: The id of the gateway.
 
 ###### Payload
-```
+```json
 {
 	"vendor": "TP-Link",
 	"status": "online"
