@@ -1,0 +1,19 @@
+{
+  "name": "gateway-api",
+  "version": "1.0.0",
+  "description": "This is an example nodejs + angular project.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mr-krustev/Gateway_Demo.git"
+  },
+  "author": "Martin Krastev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mr-krustev/Gateway_Demo/issues"
+  },
+  "homepage": "https://github.com/mr-krustev/Gateway_Demo#readme"
+}
