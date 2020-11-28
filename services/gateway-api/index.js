@@ -1,6 +1,7 @@
 const express = require('express')
 const dotenv = require('dotenv')
-const connectDB = require('./config/db ')
+const connectDB = require('./config/db')
+const routes = require('./routes/index')
 
 // Env variables.
 dotenv.config({
@@ -13,9 +14,8 @@ connectDB()
 
 const app = express()
 
-app.get('/', (req, res) => {
-    res.send('Hello World!')
-});
+// 
+routes(app)
 
 app.listen(PORT,  () => {
     console.log(`Listening on ${PORT}`)
