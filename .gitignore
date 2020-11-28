@@ -1,2 +1,2 @@
 node_modules
-config.env
+# config.env # Since this is just a demo with no real credentials being stored in the config file it can be uploaded safely.
