@@ -3,4 +3,5 @@ export class Peripheral {
     vendor: string;
     dateCreated: Date;
     status: string;
+    UID: number;
 }
