@@ -41,6 +41,8 @@ export class AddPeripheralDialogComponent implements OnInit {
   }
 
   clearForm() {
-    this.peripheralDialogForm.reset();
+    this.peripheralDialogForm.reset({
+      status: "online"
+    });
   }
 }
