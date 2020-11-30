@@ -8,6 +8,11 @@ services:
     depends_on:
       - db
     container_name: gateway-api  
+  client:
+    build: ./client
+    ports:
+      - "80:80"
+    container_name: gateway-client
   db:
     image: mongo
     ports:
