@@ -13,6 +13,10 @@ const PORT = process.env.PORT || 3000;
 // Connect to mongo.
 connectDB()
 
+// Uncomment to seed DB. NOTE: THIS WILL DELETE ALL PREVIOUS DATA.
+// const seedDB = require('./helpers/db-seeder')
+// seedDB()
+
 const app = express()
 
 // Body parser
