@@ -46,7 +46,7 @@ export class GatewayCardComponent implements OnInit {
           this.addDevice(device);
         }
       }, (err) => {
-        this.snackBar.open(`${err.status}: ${err.message}`, undefined, { duration: 8000, verticalPosition: 'top', panelClass: ['snackbar-error'] });
+        this.snackBar.open(`${err.status}: ${err.message}`, "DISMISS", { duration: 8000, verticalPosition: 'top', panelClass: ['snackbar-error'] });
       })
   }
 

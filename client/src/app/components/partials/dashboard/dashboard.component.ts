@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig, MatSnackBar } from '@angular/material';
 import { Gateway } from 'src/app/models/gateway';
 import { GatewayService } from 'src/app/services/gateway.service';
 import { AddGatewayDialogComponent } from '../dialogs/add-gateway-dialog/add-gateway-dialog.component';
@@ -14,7 +14,8 @@ export class DashboardComponent implements OnInit {
   loadingGateways = true;
 
   constructor(private gatewayService: GatewayService,
-    private dialog: MatDialog) { }
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.gatewayService.getAllGateways().subscribe((gateways) => {
@@ -38,15 +39,16 @@ export class DashboardComponent implements OnInit {
       .subscribe((result) => {
         this.addGateway(result);
       }, (err) => {
-        console.log(err);
+        this.snackBar.open(`${err.status}: ${err.message}`, "DISMISS", { duration: 8000, verticalPosition: 'top', panelClass: ['snackbar-error'] });
       })
   }
 
   addGateway(gateway: Gateway) {
     this.gatewayService.addGateway(gateway).subscribe((response) => {
       this.gateways.push(response); // Update UI    
+      this.snackBar.open("Successfully created gateway.", "DISMISS", { duration: 8000, verticalPosition: 'top', panelClass: ['snackbar-error'] });
     }, (err) => {
-      console.log(err);
+      this.snackBar.open(`${err.status}: ${err.message}`, "DISMISS", { duration: 8000, verticalPosition: 'top', panelClass: ['snackbar-error'] });
     })
   }
 }
