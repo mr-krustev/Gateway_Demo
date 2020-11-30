@@ -3,6 +3,7 @@ const cors = require('cors')
 const dotenv = require('dotenv')
 const connectDB = require('./config/db')
 const routes = require('./routes/index')
+const morgan = require('morgan')
 
 // Env variables.
 const dotenvPath = process.env.NODE_ENV === 'test' ? './config/config-test.env' : './config/config.env';
@@ -21,8 +22,8 @@ if (process.env.NODE_ENV !== 'test') {
 connectDB()
 
 // Uncomment to seed DB. NOTE: THIS WILL DELETE ALL PREVIOUS DATA.
-// const seedDB = require('./helpers/db-seeder')
-// seedDB()
+const seedDB = require('./helpers/db-seeder')
+seedDB()
 
 // Body parser
 app.use(express.urlencoded({ extended: false }))
