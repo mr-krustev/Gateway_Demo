@@ -1,0 +1,18 @@
+.box {
+    min-height: 45vh;
+    max-height: 45vh;
+    max-width: 32vw;
+    min-width: 32vw;
+    display: inline-flex;
+}
+
+.add-gateway-button {
+    font-size: 2rem;
+}
+
+.gateway-card-container {
+    overflow: auto;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: justify;
+}

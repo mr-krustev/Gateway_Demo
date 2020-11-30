@@ -1,0 +1,25 @@
+<mat-card class="gateway-card">
+    <mat-card-header>
+        <h4>{{ gateway.name }}</h4>
+    </mat-card-header>
+    <mat-card-actions>
+        <button mat-icon-button color="primary" aria-label="Add device dialog" (click)="openAddPeripheralDeviceDialog()"
+            [disabled]="gateway.peripherals.length >= 10">
+            <mat-icon>add_circle</mat-icon> <span>Add Device</span>
+            <span *ngIf="gateway.peripherals.length >= 10">/ MAXIMUM REACHED</span>
+        </button>
+    </mat-card-actions>
+    <mat-card-content>
+        <p><label>IPv4:</label> {{ gateway.ipv4 }}</p>
+        <p><label>Peripheral Devices</label></p>
+        <ol>
+            <li *ngFor="let peripheral of gateway.peripherals">
+                <span>{{peripheral.UID}}. {{ peripheral.vendor }} - <span
+                        [ngStyle]="{ 'color': peripheral.status === 'offline' ? 'red' : 'green' }">{{ peripheral.status }}</span></span>
+                <button mat-icon-button color="warn" aria-label="Delete button" (click)="removePeripheral(peripheral)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </li>
+        </ol>
+    </mat-card-content>
+</mat-card>

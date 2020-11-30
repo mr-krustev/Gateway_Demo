@@ -1,0 +1,27 @@
+<h2>Add a Device to {{ this.gateway.name }}</h2>
+<div class='form-container'>
+    <div class="form-container">
+        <form [formGroup]='peripheralDialogForm' (ngSubmit)="onSubmit()">
+            <mat-form-field>
+                <!-- <mat-label>Vendor</mat-label> -->
+                <input matInput placeholder="Vendor" formControlName='vendor'>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Status</mat-label>
+                <mat-select formControlName='status'>
+                    <!-- This could be made abstract in the case of more fields. -->
+                    <mat-option value='online' selected>Online</mat-option>
+                    <mat-option value='offline'>Offline</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <div *ngFor="let error of this.formErrors" class='error-list'>
+                {{ error.control | regexSplit: '(?=[A-Z])' | join: ' ' | titlecase}}: {{ error.error }}
+            </div>
+
+            <button mat-raised-button color="primary" type="submit">Add</button>
+            <button mat-raised-button color="accent" (click)="clearForm()" type="button">Clear</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+.gateway-card {
+    display:inline-block;
+    width: 30vw;
+    height: 30vh;
+    margin: 10px;
+    overflow: auto;
+}
+
+.gateway-card label {
+    font-weight: bold;
+}
+
+.gateway-card ol {
+    list-style: none;
+    padding-left: 0;
+}
+
+.gateway-card li {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dotted black;
+    align-items: center;
+}

@@ -1,0 +1,15 @@
+<h3>Dashboard</h3>
+<div>
+    <button mat-button class='add-gateway-button' color='primary' (click)='openAddGatewayDialog()'>
+        <mat-icon>add_circle</mat-icon><span>Add Gateway</span>
+    </button>
+</div>
+<div>
+    <div *ngIf="loadingGateways">
+        <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+    </div>
+    <div *ngIf="!loadingGateways" class='gateway-card-container'>
+        <app-gateway-card class='box' *ngFor="let gate of gateways" [gateway]="gate"></app-gateway-card>
+    </div>
+
+</div>
