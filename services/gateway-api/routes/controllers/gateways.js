@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const gatewayDal = require('../../dals/gateway-dal')
 
-
 router.get('/', async (req, res, next) => {
     try {
         const result = await gatewayDal.getAllGateways();
@@ -36,6 +35,19 @@ router.post('/', async (req, res, next) => {
     }
 });
 
+router.delete('/:gateId', async (req, res, next) => {
+    try {
+        const result = await gatewayDal.removeGateway(req.params.gateId);
+        const response = {
+            message: 'Successfully deleted gateway device.',
+            id: req.params.id
+        };
+        res.status(294).send(response);
+    } catch (err) {
+        next(err)
+    }
+})
+
 
 router.post('/:gateId/peripherals', async (req, res, next) => {
     try {
@@ -53,7 +65,7 @@ router.delete('/:gateId/peripherals/:id', async (req, res, next) => {
             message: 'Successfully deleted peripheral device.',
             id: req.params.id
         };
-        res.status(201).send(response);
+        res.status(204).send(response);
     } catch (err) {
         next(err);
     }

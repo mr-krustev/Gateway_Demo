@@ -44,6 +44,15 @@ async function addPeripheral(gatewayID, peripheral) {
     return result;
 }
 
+async function removeGateway(gatewayID) {
+    const gateway = await Gateway.findOne({ _id: gatewayID })
+    gateway.peripherals.forEach(async (peripheralID) => {
+        await Peripheral.deleteOne({ _id: peripheralID });
+    })
+
+    return gateway.deleteOne()
+}
+
 async function removePeripheral(gatewayID, peripheralID) {
     const gateway = await (await Gateway.findOne({ _id: gatewayID }));
     if (!gateway) {
@@ -80,5 +89,6 @@ module.exports = {
     getSpecificGateway,
     addGateway,
     addPeripheral,
+    removeGateway,
     removePeripheral
 }
