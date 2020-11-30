@@ -8,11 +8,17 @@ body {
 }
 
 .snackbar-error {
-    background: #F44336;
+    background: #B00020;
     color: white;
 }
 
 .snackbar-success {
     background: #2196F3;
     color: white;
+}
+
+.snackbar-error .mat-simple-snackbar-action, .snackbar-success .mat-simple-snackbar-action {
+    color: white;
+    // background-color: gray;
+    border-radius: 10px;
 }
