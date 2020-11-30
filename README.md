@@ -14,6 +14,10 @@ In order to start up the solution, all you need to do is open the root folder, s
 
 To populate with sample data, uncomment the `seedDB function and import` from index.js in `services/gateway-api` folder. Please note that any previous gateway/peripheral data will be deleted. To preven this, go to `helpers\db-seeder.js` and comment out the first 2 lines in the function that `deleteMany`;
 
+### Running Tests
+
+In order to run tests you need to have a mongodb instance running on port `27017`. This can be easily achieved by commenting out everything except the DB definition in docker-compose and starting up the container.
+
 ### Developer Comments
 
 The solution uses a **non-persistent** MongoDB that gets started up with the compose. Even though its a non-persistent, unless the container created by docker-compose is deleted, the data will be kept by Docker.
