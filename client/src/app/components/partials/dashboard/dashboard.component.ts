@@ -36,7 +36,8 @@ export class DashboardComponent implements OnInit {
     this.dialog.open(AddGatewayDialogComponent, dialogConfig).afterClosed()
       .subscribe((result) => {
         this.addGateway(result);
-      }, (err) => {
+      }, (response) => {
+        const err = response.error;
         this.snackBar.open(`${err.status}: ${err.message}`, "DISMISS", { duration: 8000, verticalPosition: 'top', panelClass: ['snackbar-error'] });
       })
   }
@@ -45,7 +46,8 @@ export class DashboardComponent implements OnInit {
     this.gatewayService.addGateway(gateway).subscribe((response) => {
       this.gateways.push(response); // Update UI    
       this.snackBar.open("Successfully created gateway.", "DISMISS", { duration: 8000, verticalPosition: 'top', panelClass: ['snackbar-error'] });
-    }, (err) => {
+    }, (response) => {
+      const err = response.error;
       this.snackBar.open(`${err.status}: ${err.message}`, "DISMISS", { duration: 8000, verticalPosition: 'top', panelClass: ['snackbar-error'] });
     })
   }

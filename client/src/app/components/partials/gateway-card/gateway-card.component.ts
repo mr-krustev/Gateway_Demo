@@ -45,7 +45,8 @@ export class GatewayCardComponent implements OnInit {
         if (device) {
           this.addDevice(device);
         }
-      }, (err) => {
+      }, (response) => {
+        const err = response.error;
         this.snackBar.open(`${err.status}: ${err.message}`, "DISMISS", { duration: 8000, verticalPosition: 'top', panelClass: ['snackbar-error'] });
       })
   }
@@ -55,8 +56,8 @@ export class GatewayCardComponent implements OnInit {
       .subscribe((device) => {
         this.gateway.peripherals.push(device); // Update UI;
         this.snackBar.open('Successfully added device!', "DISMISS", { duration: 8000, verticalPosition: 'top', panelClass: ['snackbar-success'] });
-      }, (err) => {
-        console.log(err.error.error.message);
+      }, (response) => {
+        const err = response.error;
         this.snackBar.open(`${err.status}: ${err.message}`, "DISMISS", { duration: 8000, verticalPosition: 'top', panelClass: ['snackbar-error'] });
       })
   }
@@ -66,7 +67,8 @@ export class GatewayCardComponent implements OnInit {
       .subscribe((response) => {
         this.gateway.peripherals = this.gateway.peripherals.filter(p => p._id !== peripheralId); // Update UI.
         this.snackBar.open('Successfully removed device!', "DISMISS", { duration: 8000, verticalPosition: 'top', panelClass: ['snackbar-success'] });
-      }, (err) => {
+      }, (response) => {
+        const err = response.error;
         this.snackBar.open(`${err.status}: ${err.message}`, "DISMISS", { duration: 8000, verticalPosition: 'top', panelClass: ['snackbar-error'] });
       })
   }
