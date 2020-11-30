@@ -2,7 +2,7 @@
 
 ## Client
 
-Work in Progress.
+A simple angular client with a dashboard functionality to view and add gateways as well as add/view/delete peripheral devices associated with said gateways.
 
 ## Services
 
