@@ -20,12 +20,10 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.gatewayService.getAllGateways().subscribe((gateways) => {
       this.gateways = gateways;
-      console.log(this.gateways);
       this.loadingGateways = false;
     }, (err) => {
       this.loadingGateways = false;
-      console.log(err);
-      // Maybe implement an error handler that can show a message.
+      this.snackBar.open(`${err.status}: ${err.message}`, "DISMISS", { duration: 8000, verticalPosition: 'top', panelClass: ['snackbar-error'] });
     })
   }
 
