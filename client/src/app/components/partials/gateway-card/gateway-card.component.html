@@ -6,7 +6,7 @@
         <button mat-icon-button color="primary" aria-label="Add device dialog" (click)="openAddPeripheralDeviceDialog()"
             [disabled]="gateway.peripherals.length >= 10">
             <mat-icon>add_circle</mat-icon> <span>Add Device</span>
-            <span *ngIf="gateway.peripherals.length >= 10">/ MAXIMUM REACHED</span>
+            <span *ngIf="gateway.peripherals.length >= 10"> (MAXIMUM REACHED)</span>
         </button>
     </mat-card-actions>
     <mat-card-content>
