@@ -1,0 +1,6 @@
+<div *ngIf="loadingGateway">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</div>
+<div *ngIf="!loadingGateway" class='gateway-card-container'>
+    <app-gateway-card [gateway]="gateway"></app-gateway-card>
+</div>

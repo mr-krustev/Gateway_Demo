@@ -1,6 +1,6 @@
 <mat-card class="gateway-card">
     <mat-card-header>
-        <h4>{{ gateway.name }}</h4>
+        <h4><a class="header-link" href="/gateways/{{ gateway._id }}">{{ gateway.name }}</a></h4>
     </mat-card-header>
     <mat-card-actions>
         <button mat-icon-button color="primary" aria-label="Add device dialog" (click)="openAddPeripheralDeviceDialog()"

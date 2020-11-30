@@ -1,7 +1,6 @@
 .gateway-card {
-    display:inline-block;
-    width: 30vw;
-    height: 30vh;
+    width: 100%;
+    height: 80%;
     margin: 10px;
     overflow: auto;
 }
@@ -20,4 +19,14 @@
     justify-content: space-between;
     border-bottom: 1px dotted black;
     align-items: center;
+}
+
+.header-link {
+    text-decoration: none;
+    color: black;
+}
+
+.header-link:hover {
+    color: blue;
+    text-decoration: underline;
 }

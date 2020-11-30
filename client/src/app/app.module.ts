@@ -16,6 +16,7 @@ import { ToolbarComponent } from './components/core/toolbar/toolbar.component';
 
 // Pages
 import { HomeComponent } from './components/home/home.component';
+import { GatewayViewComponent } from './components/gateway-view/gateway-view.component';
 
 // Partials
 import { DashboardComponent } from './components/partials/dashboard/dashboard.component';
@@ -42,7 +43,8 @@ import { RegexSplitPipe } from './utilities/pipes/regex-split.pipe';
     ConfirmationDialogComponent,
     AddGatewayDialogComponent,
     JoinPipe,
-    RegexSplitPipe
+    RegexSplitPipe,
+    GatewayViewComponent
   ],
   imports: [
     BrowserModule,
