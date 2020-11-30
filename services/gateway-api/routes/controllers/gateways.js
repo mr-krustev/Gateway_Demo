@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const Gateway = require('../../models/Gateway')
 const Peripheral = require('../../models/Peripheral')
-const nanoid = require('nanoid/non-secure').customAlphabet('0123456789', 25)
+const nanoid = require('nanoid/non-secure').customAlphabet('0123456789', 10)
 
 
 router.get('/', async (req, res, next) => {
