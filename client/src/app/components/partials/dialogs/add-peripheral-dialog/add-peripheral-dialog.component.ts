@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormError } from 'src/app/models/form-error';
 import { Gateway } from 'src/app/models/gateway';
-import { GatewayService } from 'src/app/services/gateway.service';
 import { getFormValidationErrors } from 'src/app/utilities/form-validation';
 
 @Component({
@@ -18,14 +17,13 @@ export class AddPeripheralDialogComponent implements OnInit {
   constructor(
     private dialogRef: MatDialogRef<AddPeripheralDialogComponent>,
     private fb: FormBuilder,
-    private gatewayService: GatewayService,
     @Inject(MAT_DIALOG_DATA) protected gateway: Gateway) {
   }
 
   ngOnInit() {
     this.peripheralDialogForm = this.fb.group({
-      vendor: ['', Validators.required],
-      status: ['', Validators.required]
+      vendor: ['', [Validators.required, Validators.minLength(3)]],
+      status: ['online', [Validators.required]] // This could be improved to be taken dynamically instead of hardcoded.
     });
   }
 
