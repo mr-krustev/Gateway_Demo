@@ -2,6 +2,7 @@ const router = require('express').Router();
 
 const setup = (app) => {
     app.use('/api/gateways', require('./controllers/gateways'))
+
     // not found middleware.
     app.use((req, res, next) => {
         const error = new Error("Not found");
@@ -11,11 +12,10 @@ const setup = (app) => {
 
     // error handler middleware
     app.use((error, req, res, next) => {
+        console.log(error.message);
         res.status(error.status || 500).send({
-            error: {
-                status: error.status || 500,
-                message: error.message || 'Internal Server Error',
-            },
+            status: error.status || 500,
+            message: error.message || 'Internal Server Error',
         });
     });
 }

@@ -41,6 +41,13 @@ router.get('/:gateId', async (req, res, next) => {
         const result = await Gateway.findOne({ _id: req.params.gateId })
             .populate('peripherals')
             .lean();
+        if (!result) {
+            const error = new Error("Gateway not found");
+            error.status = 404;
+
+            return next(error);
+        }
+
         res.status(200).send(result);
     } catch (err) {
         console.log(err)
@@ -63,11 +70,17 @@ router.post('/:gateId/peripherals', async (req, res, next) => {
     try {
         const gateway = await Gateway.findOne({ _id: req.params.gateId });
         if (!gateway) {
-            throw new Error('Gateway not found.')
+            const error = new Error("Gateway not found");
+            error.status = 404;
+
+            return next(error);
         }
 
         if (gateway.peripherals.length >= 10) {
-            throw new Error('Too many peripheral devices associated with gateway.')
+            const error = new Error("Too many peripheral devices associated with gateway.");
+            error.status = 404;
+
+            return next(error);
         }
 
         // This could be improved but for the purpose of being a unique number, should suffice.
@@ -89,16 +102,25 @@ router.delete('/:gateId/peripherals/:id', async (req, res, next) => {
     try {
         const gateway = await (await Gateway.findOne({ _id: req.params.gateId }));
         if (!gateway) {
-            throw new Error('Gateway not found.')
+            const error = new Error("Gateway not found.");
+            error.status = 404;
+
+            return next(error);
         }
 
         if (gateway.peripherals.length === 0) {
-            throw new Error('No devices associated with current gateway.')
+            const error = new Error("No devices associated with current gateway.");
+            error.status = 404;
+
+            return next(error);
         }
 
         const result = await Peripheral.deleteOne({ _id: req.params.id });
         if (result.deletedCount === 0) {
-            throw new Error('Device could not be found or has already been deleted.')
+            const error = new Error("Device could not be found or has already been deleted.");
+            error.status = 404;
+
+            return next(error);
         }
 
         gateway.peripherals.splice(gateway.peripherals.indexOf(req.params.id), 1);
