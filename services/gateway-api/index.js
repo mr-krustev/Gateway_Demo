@@ -22,7 +22,6 @@ app.use(express.json())
 // CORS
 var allowlist = ['http://localhost'] // This could be extracted to an env variable and have a setup depending on needs.
 var corsOptionsDelegate = function (req, callback) {
-    console.log(req.header('Origin'));
     var corsOptions;
     if (allowlist.indexOf(req.header('Origin')) !== -1) {
         corsOptions = { origin: true } // reflect (enable) the requested origin in the CORS response
