@@ -25,7 +25,7 @@ export class AddPeripheralDialogComponent implements OnInit {
   ngOnInit() {
     this.peripheralDialogForm = this.fb.group({
       vendor: ['', Validators.required],
-      status: ['', Validators.required]
+      status: ['online', Validators.required] // This could be improved to be taken dynamically instead of hardcoded.
     });
   }
 

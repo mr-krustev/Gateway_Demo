@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig, MatSnackBar } from '@angular/material';
 import { ConfirmationDialogData } from 'src/app/models/confirmation-dialog-data';
 import { Gateway } from 'src/app/models/gateway';
 import { Peripheral } from 'src/app/models/peripheral';
@@ -15,7 +15,7 @@ import { ConfirmationDialogComponent } from '../dialogs/confirmation-dialog/conf
 export class GatewayCardComponent implements OnInit {
   @Input('gateway') gateway: Gateway;
 
-  constructor(private gatewayService: GatewayService, private dialog: MatDialog) { }
+  constructor(private gatewayService: GatewayService, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
   }
@@ -42,7 +42,9 @@ export class GatewayCardComponent implements OnInit {
     dialogConfig.data = this.gateway;
     this.dialog.open(AddPeripheralDialogComponent, dialogConfig)
       .afterClosed().subscribe((device) => {
-        this.addDevice(device);
+        if (device) {
+          this.addDevice(device);
+        }
       }, (err) => {
         console.log(err)
       })
@@ -52,9 +54,9 @@ export class GatewayCardComponent implements OnInit {
     this.gatewayService.addPeripheralDevice(this.gateway._id, device)
       .subscribe((device) => {
         this.gateway.peripherals.push(device); // Update UI;
+        this.snackBar.open('Successfully added device!', undefined, { duration: 8000, verticalPosition: 'top', panelClass: ['snackbar-success'] });
       }, (err) => {
-        console.log(err);
-        // Show error to user somehow.
+        this.snackBar.open(err.message, undefined, { duration: 8000, verticalPosition: 'top', panelClass: ['snackbar-error'] });
       })
   }
 
@@ -62,9 +64,9 @@ export class GatewayCardComponent implements OnInit {
     this.gatewayService.removePeripheralDeviceByID(this.gateway._id, peripheralId)
       .subscribe((response) => {
         this.gateway.peripherals = this.gateway.peripherals.filter(p => p._id !== peripheralId); // Update UI.
-        console.log(response);
+        this.snackBar.open('Successfully removed device!', undefined, { duration: 8000, verticalPosition: 'top', panelClass: ['snackbar-success'] });
       }, (err) => {
-        console.log(err);
+        this.snackBar.open(err.message, undefined, { duration: 8000, verticalPosition: 'top', panelClass: ['snackbar-error'] });
       })
   }
 }
