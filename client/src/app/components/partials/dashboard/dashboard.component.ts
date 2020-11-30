@@ -45,7 +45,7 @@ export class DashboardComponent implements OnInit {
   addGateway(gateway: Gateway) {
     this.gatewayService.addGateway(gateway).subscribe((response) => {
       this.gateways.push(response); // Update UI    
-      this.snackBar.open("Successfully created gateway.", "DISMISS", { duration: 8000, verticalPosition: 'top', panelClass: ['snackbar-error'] });
+      this.snackBar.open("Successfully created gateway.", "DISMISS", { duration: 8000, verticalPosition: 'top', panelClass: ['snackbar-success'] });
     }, (response) => {
       const err = response.error;
       this.snackBar.open(`${err.status}: ${err.message}`, "DISMISS", { duration: 8000, verticalPosition: 'top', panelClass: ['snackbar-error'] });
