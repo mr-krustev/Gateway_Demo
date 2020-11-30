@@ -12,7 +12,6 @@ const setup = (app) => {
 
     // error handler middleware
     app.use((error, req, res, next) => {
-        console.log(error.message);
         res.status(error.status || 500).send({
             status: error.status || 500,
             message: error.message || 'Internal Server Error',

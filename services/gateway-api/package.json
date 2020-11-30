@@ -4,7 +4,7 @@
   "description": "This is an example nodejs + angular project.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --set-timeout=10000"
   },
   "repository": {
     "type": "git",
@@ -17,11 +17,14 @@
   },
   "homepage": "https://github.com/mr-krustev/Gateway_Demo#readme",
   "dependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "mongoose": "^5.10.17",
+    "morgan": "^1.10.0",
     "nanoid": "^3.1.18",
     "passport": "^0.4.1"
   },

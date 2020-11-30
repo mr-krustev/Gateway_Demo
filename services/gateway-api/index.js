@@ -5,10 +5,17 @@ const connectDB = require('./config/db')
 const routes = require('./routes/index')
 
 // Env variables.
+const dotenvPath = process.env.NODE_ENV === 'test' ? './config/config-test.env' : './config/config.env';
 dotenv.config({
-    path: './config/config.env'
+    path: dotenvPath
 })
 const PORT = process.env.PORT || 3000;
+
+const app = express()
+
+if (process.env.NODE_ENV !== 'test') {
+    app.use(morgan('combined')); //'combined' outputs the Apache style LOGs
+}
 
 // Connect to mongo.
 connectDB()
@@ -16,8 +23,6 @@ connectDB()
 // Uncomment to seed DB. NOTE: THIS WILL DELETE ALL PREVIOUS DATA.
 // const seedDB = require('./helpers/db-seeder')
 // seedDB()
-
-const app = express()
 
 // Body parser
 app.use(express.urlencoded({ extended: false }))
@@ -40,6 +45,8 @@ app.use(cors(corsOptionsDelegate))
 // Routes
 routes(app)
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
     console.log(`Listening on ${PORT}`)
 });
+
+module.exports = server;
