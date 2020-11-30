@@ -27,5 +27,6 @@
 }
 
 .header-link:hover {
-    color: darkblue;
+    color: blue;
+    text-decoration: underline;
 }
