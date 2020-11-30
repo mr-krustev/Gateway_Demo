@@ -1,8 +1,8 @@
 .box {
-    min-height: 45vh;
-    max-height: 45vh;
+    min-height: 300px;
+    max-height: 35vh;
     max-width: 32vw;
-    min-width: 32vw;
+    min-width: 300px;
     display: inline-flex;
 }
 
@@ -11,7 +11,6 @@
 }
 
 .gateway-card-container {
-    overflow: auto;
     display: flex;
     flex-wrap: wrap;
     text-align: justify;
