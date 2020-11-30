@@ -1,8 +1,8 @@
 .box {
-    min-height: 300px;
-    max-height: 35vh;
-    max-width: 32vw;
-    min-width: 300px;
+    min-height: 55vh;
+    max-height: 55vh;
+    max-width: 80vw;
+    min-width: 32vw;
     display: inline-flex;
 }
 
