@@ -46,7 +46,7 @@ export class GatewayCardComponent implements OnInit {
           this.addDevice(device);
         }
       }, (err) => {
-        console.log(err)
+        this.snackBar.open(`${err.status}: ${err.message}`, undefined, { duration: 8000, verticalPosition: 'top', panelClass: ['snackbar-error'] });
       })
   }
 
@@ -54,9 +54,10 @@ export class GatewayCardComponent implements OnInit {
     this.gatewayService.addPeripheralDevice(this.gateway._id, device)
       .subscribe((device) => {
         this.gateway.peripherals.push(device); // Update UI;
-        this.snackBar.open('Successfully added device!', undefined, { duration: 8000, verticalPosition: 'top', panelClass: ['snackbar-success'] });
+        this.snackBar.open('Successfully added device!', "DISMISS", { duration: 8000, verticalPosition: 'top', panelClass: ['snackbar-success'] });
       }, (err) => {
-        this.snackBar.open(err.message, undefined, { duration: 8000, verticalPosition: 'top', panelClass: ['snackbar-error'] });
+        console.log(err.error.error.message);
+        this.snackBar.open(`${err.status}: ${err.message}`, "DISMISS", { duration: 8000, verticalPosition: 'top', panelClass: ['snackbar-error'] });
       })
   }
 
@@ -64,9 +65,9 @@ export class GatewayCardComponent implements OnInit {
     this.gatewayService.removePeripheralDeviceByID(this.gateway._id, peripheralId)
       .subscribe((response) => {
         this.gateway.peripherals = this.gateway.peripherals.filter(p => p._id !== peripheralId); // Update UI.
-        this.snackBar.open('Successfully removed device!', undefined, { duration: 8000, verticalPosition: 'top', panelClass: ['snackbar-success'] });
+        this.snackBar.open('Successfully removed device!', "DISMISS", { duration: 8000, verticalPosition: 'top', panelClass: ['snackbar-success'] });
       }, (err) => {
-        this.snackBar.open(err.message, undefined, { duration: 8000, verticalPosition: 'top', panelClass: ['snackbar-error'] });
+        this.snackBar.open(`${err.status}: ${err.message}`, "DISMISS", { duration: 8000, verticalPosition: 'top', panelClass: ['snackbar-error'] });
       })
   }
 }
